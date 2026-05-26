@@ -25,8 +25,8 @@ def home():
 
 @app.post("/predict")
 def predict_salary(data: JobInput):
-    # Convert incoming data into a dictionary (Using .dict() for older pydantic stability)
-    raw_data = data.dict()
+    # Convert incoming data into a dictionary using modern Pydantic v2 syntax
+    raw_data = data.model_dump()
     
     # Initialize a clean single-row DataFrame matching training layout
     input_df = pd.DataFrame(0, index=[0], columns=model_features)
